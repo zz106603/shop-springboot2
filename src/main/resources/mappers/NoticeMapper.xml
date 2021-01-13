@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.springboot.mapper.NoticeMapper">
+
+    <sql id="noticeColumns">
+        idx
+        ,title
+        ,content
+        ,writer
+        ,view_cnt
+        ,notice_yn
+        ,delete_yn
+        ,insert_time
+        ,update_time
+        ,delete_time
+    </sql>
+
+    <insert id="insertNotice" parameterType="com.shop.springboot.domain.NoticeDto">
+        INSERT INTO tb_notice(
+                <include refid="noticeColumns" />
+        )VALUES(
+                #{idx}
+                ,#{title}
+                ,#{content}
+                ,#{writer}
+                ,0
+                ,IFNULL(#{noticeYn}, 'N')
+                ,'N'
+                ,NOW()
+                ,NULL
+                ,NULL
+        )
+
+    </insert>
+
+    <select id="selectNoticeDetail" parameterType="long" resultType="com.shop.springboot.domain.NoticeDto">
+        SELECT
+            <include refid="noticeColumns"/>
+        FROM
+            tb_notice
+        WHERE
+            delete_yn = 'N'
+        AND
+            idx = #{idx}
+    </select>
+
+    <update id="updateNotice" parameterType="com.shop.springboot.domain.NoticeDto">
+        UPDATE tb_notice
+        SET
+            update_time = NOW()
+            ,title = #{title}
+            ,content = #{content}
+            ,writer = #{writer}
+            ,notice_yn = IFNULL(#{noticeYn}, 'N')
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <update id="deleteNotice" parameterType="long">
+        UPDATE tb_notice
+        SET
+            delete_yn = 'Y'
+            ,delete_time = NOW()
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <select id="selectNoticeList" parameterType="com.shop.springboot.domain.NoticeDto" resultType="com.shop.springboot.domain.NoticeDto">
+        SELECT
+            <include refid="noticeColumns"/>
+        FROM
+            tb_notice
+        WHERE
+            delete_yn = 'Y'
+        ORDER BY
+            notice_yn ASC,
+            idx DESC,
+            insert_time DESC
+    </select>
+
+    <select id="selectNoticeTotalCount" parameterType="com.shop.springboot.domain" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            tb_notice
+        WHERE
+            delete_yn = 'N'
+    </select>
+
+</mapper>
