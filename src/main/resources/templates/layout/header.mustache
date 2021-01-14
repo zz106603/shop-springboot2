@@ -5,5 +5,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 </head>
 <body>
+    <h1 style="background-color: antiquewhite">유난 쇼핑몰</h1>
+
+    <div class="col-md-6">
+        {{#userName}}
+            Logged in as: <span id="user">{{userName}}</span>
+            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+        {{/userName}}
+        {{^userName}}
+            <a href="/member/login.do" role="button" class="btn btn-primary">로그인</a>
+            <a href="/member/join.do" role="button" class="btn btn-primary">회원가입</a>
+            <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">구글 로그인</a>
+            <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">네이버 로그인</a>
+        {{/userName}}
+    </div>
+    <div class="col-md-6">
+      <a href="/notice/main.do" role="button" class="btn btn-primary">공지사항</a>
+    </div>
+</body>

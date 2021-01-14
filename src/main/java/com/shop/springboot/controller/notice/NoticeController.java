@@ -43,7 +43,16 @@ public class NoticeController {
 
     @GetMapping("/notice/update/{idx}")
     public String noticeUpdate(@PathVariable Long idx, Model model){
+
+        if(idx == null){
+            //올바르지 않은 접근
+            return "redirect:/notice/main.do";
+        }
         NoticeDto noticeDto = noticeService.getNoticeDetail(idx);
+        if(noticeDto == null || "Y".equals(noticeDto.getDeleteYn())){
+            //없는 게시글이거나 이미 삭제된 게시글
+            return "redirect:/notice/main.do";
+        }
         model.addAttribute("noticeDto", noticeDto);
 
         return "notice/write-update";
@@ -51,7 +60,16 @@ public class NoticeController {
 
     @GetMapping("/notice/read/{idx}")
     public String noticeRead(@PathVariable Long idx, Model model){
+
+        if(idx == null){
+            //올바르지않은 접근
+            return "redirect:/notice/main.do";
+        }
         NoticeDto noticeDto = noticeService.getNoticeDetail(idx);
+        if(noticeDto == null || "Y".equals(noticeDto.getDeleteYn())){
+            //없는 게시글이거나 이미 삭제된 게시글
+            return "redirect:/notice/main.do";
+        }
         model.addAttribute("noticeDto", noticeDto);
 
         return "notice/read";

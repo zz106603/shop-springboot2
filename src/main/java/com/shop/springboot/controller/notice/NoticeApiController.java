@@ -11,7 +11,7 @@ public class NoticeApiController {
 
     private final NoticeService noticeService;
 
-    @PostMapping("/api/v1/posts")
+    @PostMapping("/api/v1/notice")
     public Long save(@RequestBody NoticeDto noticeDto){
         boolean temp = noticeService.registerNotice(noticeDto);
         long result = 0;
@@ -22,7 +22,7 @@ public class NoticeApiController {
         }
         return result;
     }
-    @PutMapping("/api/v1/posts/{idx}")
+    @PutMapping("/api/v1/notice/{idx}")
     public Long update(@PathVariable Long idx,
                        @RequestBody NoticeDto noticeDto){
 
@@ -35,5 +35,12 @@ public class NoticeApiController {
             result = 0;
         }
         return result;
+    }
+
+    @DeleteMapping("/api/v1/notice/{idx}")
+    public Long delete(@PathVariable Long idx){
+        noticeService.deleteNotice(idx);
+
+        return idx;
     }
 }

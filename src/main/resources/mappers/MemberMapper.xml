@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.springboot.mapper.MemberMapper">
+
+    <sql id="MemberColumns">
+        idx
+        ,member_id
+        ,member_pw
+        ,member_name
+        ,member_email
+        ,member_addr1
+        ,member_addr2
+        ,member_addr3
+        ,admin_ck
+        ,money
+        ,point
+        ,delete_yn
+        ,insert_time
+        ,update_time
+        ,delete_time
+    </sql>
+
+    <insert id="insertMember" parameterType="com.shop.springboot.domain.MemberDto">
+        INSERT INTO tb_member(
+        <include refid="MemberColumns" />
+        )VALUES(
+        #{idx}
+        ,#{memberId}
+        ,#{memberPw}
+        ,#{memberName}
+        ,#{memberEmail}
+        ,#{memberAddr1}
+        ,#{memberAddr2}
+        ,#{memberAddr3}
+        ,0
+        ,100000
+        ,5000
+        ,'N'
+        ,NOW()
+        ,NULL
+        ,NULL
+        )
+    </insert>
+
+    <select id="selectMemberDetail" parameterType="long" resultType="com.shop.springboot.domain.MemberDto">
+        SELECT
+        <include refid="MemberColumns"/>
+        FROM
+        tb_member
+        WHERE
+        delete_yn = 'N'
+        AND
+        idx = #{idx}
+    </select>
+
+    <update id="updateMember" parameterType="com.shop.springboot.domain.MemberDto">
+        UPDATE tb_member
+        SET
+            update_time = NOW()
+          ,member_id = #{memberId}
+          ,member_pw = #{memberPw}
+          ,member_name = #{memberName}
+          ,member_email = #{memberEmail}
+          ,member_addr1 = #{memberAddr1}
+          ,member_addr2 = #{memberAddr2}
+          ,member_addr3 = #{memberAddr3}
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <update id="deleteMember" parameterType="long">
+        UPDATE tb_member
+        SET
+            delete_yn = 'Y'
+          ,delete_time = NOW()
+        WHERE
+            idx = #{idx}
+    </update>
+
+    <select id="idCheck" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            tb_member
+        WHERE
+            member_id = #{memberId}
+    </select>
+
+</mapper>

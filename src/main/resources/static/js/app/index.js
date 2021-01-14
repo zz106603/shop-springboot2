@@ -22,7 +22,7 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/posts',
+            url: '/api/v1/notice',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -46,12 +46,12 @@ var main = {
 
         $.ajax({
             type: 'PUT',
-            url: '/api/v1/posts/'+idx,
+            url: '/api/v1/notice/'+idx,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            if(confirm('글을 수정하시겠습니까?')) {
+            if(confirm(idx+'번 글을 수정하시겠습니까?')) {
                 alert('글이 수정되었습니다.');
                 window.location.href = '/notice/main.do';
             }
@@ -60,16 +60,18 @@ var main = {
         });
     },
     delete : function () {
-        var id = $('#id').val();
+        var idx = $('#idx').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/v1/posts/'+id,
+            url: '/api/v1/notice/'+idx,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
-            alert('글이 삭제되었습니다.');
-            window.location.href = '/';
+            if(confirm(idx+'번 글을 삭제하시겠습니까?')){
+                alert('글이 삭제되었습니다.');
+                window.location.href = '/notice/main.do';
+            }
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });

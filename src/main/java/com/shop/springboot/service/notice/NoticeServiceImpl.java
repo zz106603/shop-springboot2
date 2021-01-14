@@ -52,7 +52,7 @@ public class NoticeServiceImpl implements NoticeService{
             list = noticeMapper.selectNoticeList();
         }
 
-
         return list;
     }
+
 }
