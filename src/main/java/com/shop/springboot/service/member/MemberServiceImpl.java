@@ -49,4 +49,14 @@ public class MemberServiceImpl implements MemberService{
     public int idCheck(String memberId) {
         return memberMapper.idCheck(memberId);
     }
+
+    @Override
+    public int emailCheck(String memberEmail) {
+        return memberMapper.emailCheck(memberEmail);
+    }
+
+    @Override
+    public MemberDto memberLogin(MemberDto params) {
+        return memberMapper.memberLogin(params);
+    }
 }

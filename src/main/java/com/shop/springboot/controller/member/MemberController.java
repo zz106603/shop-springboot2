@@ -1,20 +1,24 @@
 package com.shop.springboot.controller.member;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shop.springboot.domain.MemberDto;
-import com.shop.springboot.domain.NoticeDto;
 import com.shop.springboot.service.member.MemberService;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/member/join.do")
     public String openJoinWrite(@RequestParam(value = "idx", required = false) Long idx, Model model){
@@ -34,6 +38,23 @@ public class MemberController {
     @GetMapping("/member/login.do")
     public String openLogin(){
         return "member/login";
+    }
+
+    @PostMapping("/member/login.do")
+    public String loginPost(HttpServletRequest request, MemberDto memberDto, RedirectAttributes rttr) throws Exception{
+
+        boolean result = false;
+        HttpSession session = request.getSession();
+        MemberDto lvo = memberService.memberLogin(memberDto);
+
+        if(lvo == null){
+            result = true;
+            rttr.addFlashAttribute("result", result);
+            return "redirect:/member/login.do";
+        }
+            session.setAttribute("member", lvo);
+
+        return "redirect:/notice/main.do";
     }
 
 
@@ -73,3 +94,4 @@ public class MemberController {
     }
 
 }
+

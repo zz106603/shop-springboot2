@@ -87,4 +87,30 @@
             member_id = #{memberId}
     </select>
 
+    <select id="emailCheck" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            tb_member
+        WHERE
+            member_email = #{memberEmail}
+    </select>
+
+    <select id="memberLogin" resultType="com.shop.springboot.domain.MemberDto">
+        SELECT
+             idx
+            ,member_id
+            ,member_name
+            ,admin_ck
+            ,money
+            ,point
+        FROM
+            tb_member
+        WHERE
+            member_id = #{memberId}
+        AND
+            member_pw = #{memberPw}
+
+    </select>
+
 </mapper>

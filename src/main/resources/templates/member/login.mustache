@@ -1,30 +1,36 @@
 {{>layout/header}}
+
 <link rel="stylesheet" href="/css/login.css">
 
 <div class="wrapper">
-
     <div class="wrap">
+        <form id="login_form" method="post">
         <div class="logo_wrap">
             <span>로그인</span>
         </div>
         <div class="login_wrap">
             <div class="id_wrap">
                 <div class="id_input_box">
-                    <input class="id_input" placeholder="아이디를 입력하세요.">
+                    <input class="id_input" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
                 </div>
             </div>
             <div class="pw_wrap">
                 <div class="pw_input_box">
-                    <input class="pw_iput" placeholder="비밀번호를 입력하세요.">
+                    <input class="pw_iput" id="memberPw" name="memberPw" placeholder="비밀번호를 입력하세요.">
                 </div>
             </div>
+            {{#result}}
+                <div class="login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
+            {{/result}}
+
             <div class="login_button_wrap">
-                <input type="button" class="login_button" value="로그인">
+                <input type="button" class="login_button" id="btn-login-member" value="로그인">
             </div>
         </div>
 
-
+        </form>
     </div>
+
 
 </div>
 

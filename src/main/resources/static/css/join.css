@@ -40,7 +40,7 @@
     border: 1px solid black;
     height: 35px;
     padding: 2px 3px;
-    width: 68%;
+    width: 70%;
     float: left;
 
 }
@@ -118,6 +118,9 @@
 }
 
 /* 이름 영역 */
+
+
+
 .user_wrap{
     width: 100%;
     margin-top: 20px;
@@ -140,6 +143,28 @@
 }
 
 /* 메일 영역 */
+.email_button{
+    border: 1px solid black;
+    height: 40px;
+    width: 30%;
+    float: right;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    background-color: #ececf7;
+    cursor: pointer;
+}
+
+.mail_input_re_1{
+    color : green;
+    display: none;
+}
+.mail_input_re_2{
+    color : red;
+    display: none;
+}
+
 .mail_wrap{
     width: 100%;
     margin-top: 20px;
@@ -150,8 +175,10 @@
 }
 .mail_input_box{
     border: 1px solid black;
-    height:31px;
+    height: 35px;
     padding: 2px 3px;
+    width: 70%;
+    float: left;
 
 }
 .mail_input{
@@ -272,4 +299,41 @@
 /* float 속성 해제 */
 .clearfix{
     clear: both;
+}
+
+/* 유효성 검사 문구 */
+.final_id_ck{
+    display: none;
+    color : red;
+}
+.final_pw_ck{
+    display: none;
+    color : red;
+}
+.final_repw_ck{
+    display: none;
+    color : red;
+}
+.final_pwck_ck{
+    display: none;
+    color : red;
+}
+.final_name_ck{
+    display: none;
+    color : red;}
+.final_email_ck{
+    display: none;
+    color : red;}
+.final_addr_ck{
+    display: none;
+    color : red;}
+
+/* 비밀번호 확인 일치 유효성 검사 */
+.pwck_input_re_1{
+    color : green;
+    display : none;
+}
+.pwck_input_re_2{
+    color : red;
+    display : none;
 }

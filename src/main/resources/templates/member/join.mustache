@@ -18,30 +18,45 @@
                 </div>
                 <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
                 <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+                <span class="final_id_ck">아이디를 입력해주세요.</span>
+                <span class="id_input_box_warn"></span>
             </div>
             <div class="pw_wrap">
                 <div class="pw_name">비밀번호</div>
                 <div class="pw_input_box">
                     <input class="pw_input" id="memberPw" placeholder="비밀번호를 입력하세요">
                 </div>
+                <span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+                <span class="final_repw_ck">비밀번호를 다시 입력해주세요.</span>
             </div>
             <div class="pwck_wrap">
                 <div class="pwck_name">비밀번호 확인</div>
                 <div class="pwck_input_box">
-                    <input class="pwck_input" id="" placeholder="비밀번호를 한번 더 입력하세요">
+                    <input class="pwck_input" id="memberPwCk" placeholder="비밀번호를 한번 더 입력하세요">
                 </div>
+                <span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
+                <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+                <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
             </div>
             <div class="user_wrap">
                 <div class="user_name">이름</div>
                 <div class="user_input_box">
                     <input class="user_input" id="memberName" placeholder="이름을 입력하세요">
                 </div>
+                <span class="final_name_ck">이름을 입력해주세요.</span>
             </div>
             <div class="mail_wrap">
                 <div class="mail_name">이메일</div>
                 <div class="mail_input_box">
                     <input class="mail_input" id="memberEmail" placeholder="이메일을 입력하세요">
                 </div>
+                <div class="email_button">
+                    <span>중복 검사</span>
+                </div>
+                <span class="final_email_ck">이메일을 입력해주세요.</span>
+                <span class="mail_input_box_warn"></span>
+                <span class="mail_input_re_1">사용가능한 이메일입니다.</span>
+                <span class="mail_input_re_2">중복 이메일입니다.</span>
             </div>
             <div class="address_wrap">
                 <div class="address_name">주소</div>
@@ -64,6 +79,7 @@
                         <input class="address_input_3" id="memberAddr3" readonly="readonly" placeholder="상세주소">
                     </div>
                 </div>
+                <span class="final_addr_ck">주소를 입력해주세요.</span>
             </div>
             <div class="join_button_wrap">
                 <input type="button" class="join_button" id="btn-save-member" value="가입하기">

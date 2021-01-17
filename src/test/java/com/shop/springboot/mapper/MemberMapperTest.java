@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Member;
+
 @SpringBootTest
 public class MemberMapperTest {
 
@@ -93,5 +95,28 @@ public class MemberMapperTest {
         String id2 = "test";
         memberMapper.idCheck(id);
         memberMapper.idCheck(id2);
+    }
+
+    @Test
+    public void memberLogin(){
+        MemberDto dto = new MemberDto();
+
+        dto.setMemberId("zz");
+        dto.setMemberPw("zz");
+
+        //dto.setMemberId("zzzdgzdgzdg");
+        //dto.setMemberPw("zzzgzdgzdzgzd");
+
+        MemberDto lev =  memberMapper.memberLogin(dto);
+        try{
+            String json = new ObjectMapper().writeValueAsString(lev);
+            System.out.println("================");
+            System.out.println(json);
+            System.out.println("================");
+        }catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("lev : "+lev.toString());
     }
 }

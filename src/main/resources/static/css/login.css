@@ -81,3 +81,9 @@
 .clearfix{
     clear: both;
 }
+
+.login_warn{
+    margin-top: 30px;
+    text-align: center;
+    color : red;
+}
