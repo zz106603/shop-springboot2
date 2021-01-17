@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,13 @@ public class MemberController {
         return "member/login";
     }
 
+    @GetMapping("/member/logout.do")
+    public ModelAndView Logout(HttpSession session){
+        session.invalidate();
+        ModelAndView mv = new ModelAndView("redirect:/notice/main.do");
+        return mv;
+    }
+
     @PostMapping("/member/login.do")
     public String loginPost(HttpServletRequest request, MemberDto memberDto, RedirectAttributes rttr) throws Exception{
 
@@ -52,7 +60,7 @@ public class MemberController {
             rttr.addFlashAttribute("result", result);
             return "redirect:/member/login.do";
         }
-            session.setAttribute("member", lvo);
+            session.setAttribute("userName", lvo.getMemberName());
 
         return "redirect:/notice/main.do";
     }

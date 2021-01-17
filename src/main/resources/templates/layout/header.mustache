@@ -12,8 +12,8 @@
 
     <div class="col-md-6">
         {{#userName}}
-            Logged in as: <span id="user">{{userName}}</span>
-            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            회원: <span id="user">{{userName}}</span>
+            <a href="/member/logout.do" class="btn btn-info active" role="button">로그아웃</a>
         {{/userName}}
         {{^userName}}
             <a href="/member/login.do" role="button" class="btn btn-primary">로그인</a>
@@ -22,6 +22,8 @@
             <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">네이버 로그인</a>
         {{/userName}}
     </div>
+
+
     <div class="col-md-6">
       <a href="/notice/main.do" role="button" class="btn btn-primary">공지사항</a>
     </div>
